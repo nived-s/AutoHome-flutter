@@ -10,10 +10,18 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        color: Colors.amber,
-        child: Text('Profile page'),
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(screenWidth * 0.045),
+          child: Column(
+            children: [
+              Text('Profile page'),
+            ],
+          ),
+        ),
       ),
     );
   }

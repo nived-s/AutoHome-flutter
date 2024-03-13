@@ -10,10 +10,18 @@ class ModesPage extends StatefulWidget {
 class _ModesPageState extends State<ModesPage> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        color: Colors.purple,
-        child: Text('Modes page'),
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(screenWidth * 0.045),
+          child: Column(
+            children: [
+              Text('Modes page'),
+            ],
+          ),
+        ),
       ),
     );
   }
