@@ -37,10 +37,10 @@ TextStyle kHeadingLarge({double? fontSize}) => GoogleFonts.poppins(
   ),
 );
 
-TextStyle kBodySmall({double? fontSize}) => GoogleFonts.poppins(
+TextStyle kBodySmall({double? fontSize, Color? color, double? letterSpacing}) => GoogleFonts.poppins(
   textStyle: TextStyle(
-    color: Colors.black,
-    letterSpacing: .5,
+    color: color ?? Colors.black,
+    letterSpacing: letterSpacing ?? 0.5,
     fontSize: fontSize ?? 18,
     fontWeight: FontWeight.w300,
   ),
@@ -70,6 +70,15 @@ TextStyle kSubHeadingSmall({double? fontSize}) => GoogleFonts.poppins(
     letterSpacing: .5,
     fontSize: fontSize ?? 18,
     fontWeight: FontWeight.w300,
+  ),
+);
+
+TextStyle kModeScrollHeading({double? fontSize}) => GoogleFonts.poppins(
+  textStyle: TextStyle(
+    color: Colors.green.shade700,
+    letterSpacing: .5,
+    fontSize: fontSize ?? 22,
+    fontWeight: FontWeight.w500,
   ),
 );
 
