@@ -128,7 +128,7 @@ class _IndividualRoomState extends State<IndividualRoom> {
                                   children: [
                                     Text('Light', style: kSubHeadingLarge(),),
                                     CupertinoSwitch(
-                                      value: false,
+                                      value: true,
                                       onChanged: (index) {},
                                     ),
                                   ],
