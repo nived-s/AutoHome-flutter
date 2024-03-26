@@ -46,9 +46,9 @@ TextStyle kBodySmall({double? fontSize, Color? color, double? letterSpacing}) =>
   ),
 );
 
-TextStyle kBodyLarge({double? fontSize}) => GoogleFonts.poppins(
+TextStyle kBodyLarge({double? fontSize, Color? color}) => GoogleFonts.poppins(
   textStyle: TextStyle(
-    color: Colors.black,
+    color: color ?? Colors.black,
     letterSpacing: .5,
     fontSize: fontSize ?? 18,
     fontWeight: FontWeight.w600,

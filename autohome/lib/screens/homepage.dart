@@ -3,6 +3,7 @@ import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:autohome/constants.dart';
+import 'package:group_button/group_button.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,6 +22,8 @@ class _HomePageState extends State<HomePage> {
 
     // List of modes
     List<String> modes = ['Away', 'Bedtime', 'Children', 'Summer', 'winter'];
+
+    final controller = GroupButtonController();
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -155,46 +158,34 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
+                    const SizedBox(
+                      height: 5,
+                    ),
                     // Modes scroll
-                    SizedBox(
-                      height: 60,
-                      width: double.infinity,
-                      child: ListView.builder(
-                        // shrinkWrap: true,
-                        itemCount: modes.length,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (BuildContext context, int index) {
-                          return GestureDetector(
-                            onTap: () {
-                              // Update the selected mode index
-                              setState(() {
-                                selectedModeIndex = index;
-                              });
-                            },
-                            child: Container(
-                              margin: EdgeInsets.all(8),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 8),
-                              decoration: BoxDecoration(
-                                color: selectedModeIndex == index
-                                    ? Colors.amber
-                                    : Colors.grey,
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              child: Text(
-                                modes[index],
-                                style: TextStyle(
-                                  color: selectedModeIndex == index
-                                      ? Colors.white
-                                      : Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          GroupButton(
+                            options: GroupButtonOptions(
+                              unselectedColor: Colors.grey,
+                              unselectedTextStyle: kBodyLarge(),
+                              selectedColor: Colors.grey.shade300,
+                              selectedTextStyle:
+                                  kBodyLarge(color: Colors.green),
+                              borderRadius: BorderRadius.circular(16),
+                              groupingType: GroupingType.row,
+                              spacing: 6,
                             ),
-                          );
-                        },
+                            controller: controller,
+                            buttons: modes,
+                            onSelected: (value, index, isSelected) {
+                              print("$index is selected");
+                            },
+                          ),
+                        ],
                       ),
-                    )
+                    ),
                   ],
                 ),
                 const SizedBox(
@@ -294,7 +285,6 @@ class _HomePageState extends State<HomePage> {
                         },
                       ),
                     ),
-                  
                   ],
                 )
               ],
