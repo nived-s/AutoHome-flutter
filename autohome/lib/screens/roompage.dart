@@ -16,6 +16,15 @@ class _RoomPageState extends State<RoomPage> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
+    List<String> room_names = [
+      'Kitchen',
+      'Living Room',
+      'Master Bedroom',
+      'Childrens Bedroom',
+      'Guest Room'
+    ];
+    List<int> total_devices = [5, 3, 2, 7, 1];
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -60,12 +69,14 @@ class _RoomPageState extends State<RoomPage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      'Living Room',
+                                      // 'Living Room',
+                                      room_names[index],
                                       style: kSubHeadingLarge(
                                           color: Colors.white, fontSize: 24),
                                     ),
                                     Text(
-                                      '5 Devices',
+                                      // '5 Devices',
+                                      total_devices[index].toString() + ' Devices',
                                       style:
                                           kSubHeadingLarge(color: Colors.white),
                                     ),

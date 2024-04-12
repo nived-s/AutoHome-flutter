@@ -4,7 +4,16 @@ import 'package:flutter/material.dart';
 List<Widget> scrollListItems(BuildContext context) {
   int i = 0;
   // List of modes
-  List<String> modes = ['Away', 'Bedtime', 'Children', 'Summer', 'winter'];
+  List<String> modes = [
+    'Away',
+    'Ambient',
+    'Guest',
+    'Children',
+    'Emergency',
+    'Night',
+    'Saver',
+    'Vacay',
+  ];
   List<Widget> items = [];
   while (i < modes.length) {
     items.add(

@@ -1,3 +1,5 @@
+import 'package:autohome/screens/landingpage.dart';
+import 'package:autohome/screens/roompage.dart';
 import 'package:autohome/widgets/circulariconbtn.dart';
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
@@ -205,21 +207,27 @@ class _HomePageState extends State<HomePage> {
                             style:
                                 kSubHeadingLarge(fontSize: screenWidth * 0.05),
                           ),
-                          Row(
-                            children: [
-                              Icon(
-                                FontAwesomeIcons.arrowRight,
-                                size: screenWidth * 0.035,
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                'View All',
-                                style: kSubHeadingSmall(
-                                    fontSize: screenWidth * 0.045),
-                              ),
-                            ],
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(
+                            builder: (context) => const LandingPage()),);
+                            },
+                            child: Row(
+                              children: [
+                                Icon(
+                                  FontAwesomeIcons.arrowRight,
+                                  size: screenWidth * 0.035,
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  'View All',
+                                  style: kSubHeadingSmall(
+                                      fontSize: screenWidth * 0.045),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
