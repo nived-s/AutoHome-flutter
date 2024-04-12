@@ -20,6 +20,8 @@ dependencies:
   blurrycontainer: ^1.0.2
   list_wheel_scroll_view_nls: ^0.0.3
   group_button: ^5.3.4
+  http: ^1.2.0
+  fluttertoast: ^8.2.4
 
 dev_dependencies:
   flutter_test:

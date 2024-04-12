@@ -1,3 +1,4 @@
+import 'package:autohome/api_calls.dart';
 import 'package:autohome/constants.dart';
 import 'package:autohome/widgets/scrollListItem.dart';
 import 'package:flutter/material.dart';
@@ -12,12 +13,25 @@ class ModesPage extends StatefulWidget {
 
 class _ModesPageState extends State<ModesPage> {
   int selectedIndexOfMode = 0;
+
+  // List of modes
+  List<String> modes = [
+    'Away',
+    'Ambient',
+    'Guest',
+    'Children',
+    'Emergency',
+    'Night',
+    'Saver',
+    'Vacay',
+  ];
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
-    List<String> modes = [
+    List<String> modes_detail = [
       'Turns off all the appliances,\nlocks all windows, doors and gates',
       'Turns on ambient lights, a mood setter',
       'Monitor and track guest movements to provide them hospitality',
@@ -66,12 +80,12 @@ class _ModesPageState extends State<ModesPage> {
                       child: Row(
                         children: [
                           SizedBox(
-                            width: screenWidth*0.73,
+                            width: screenWidth * 0.73,
                             height: screenHeight * 0.35,
                             child: Center(
                               child: Text(
                                 // 'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available.. Lorem ipsum may be used as a placeholder before the final copy is available.',
-                                modes[selectedIndexOfMode],
+                                modes_detail[selectedIndexOfMode],
                                 style: kBodySmall(
                                   color: const Color.fromARGB(255, 14, 111, 22),
                                   fontSize: 20,
@@ -96,7 +110,8 @@ class _ModesPageState extends State<ModesPage> {
                   textStyle: kBodyLarge(fontSize: 20),
                 ),
                 onPressed: () {
-                  print('Selected index: $selectedIndexOfMode');
+                  print('Selected mode: ${modes[selectedIndexOfMode]}');
+                  updateModeRequest(modes[selectedIndexOfMode]);
                 },
                 child: const Padding(
                   padding: EdgeInsets.all(8.0),
