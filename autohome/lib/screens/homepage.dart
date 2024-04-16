@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Hello, \nJohn Snow',
+                      'Hello, \nJon Snow',
                       style: kHeadingLarge(fontSize: screenWidth * 0.09),
                     ),
                     Padding(

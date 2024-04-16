@@ -23,6 +23,15 @@ class _RoomPageState extends State<RoomPage> {
       'Childrens Bedroom',
       'Guest Room'
     ];
+
+    List<String> room_images = [
+      'kitchen.jpeg',
+      'hall.jpeg',
+      'master_bedroom.jpeg',
+      'children_room.jpeg',
+      'guest_bedroom.jpeg'
+    ];
+    
     List<int> total_devices = [5, 3, 2, 7, 1];
 
     return Scaffold(
@@ -51,7 +60,7 @@ class _RoomPageState extends State<RoomPage> {
                           borderRadius: BorderRadius.circular(20),
                           image: DecorationImage(
                             image:
-                                AssetImage('assets/images/rooms/kitchen.jpg'),
+                                AssetImage('assets/images/rooms/${room_images[index]}'),
                             fit: BoxFit.cover,
                           ),
                         ),
