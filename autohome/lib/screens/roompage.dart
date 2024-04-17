@@ -1,5 +1,6 @@
 import 'package:autohome/constants.dart';
 import 'package:autohome/screens/individual_room.dart';
+import 'package:autohome/screens/temp_indi_room.dart';
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,7 @@ class _RoomPageState extends State<RoomPage> {
       'Living Room',
       'Master Bedroom',
       'Childrens Bedroom',
-      'Guest Room'
+      'Garage'
     ];
 
     List<String> room_images = [
@@ -31,7 +32,7 @@ class _RoomPageState extends State<RoomPage> {
       'children_room.jpeg',
       'guest_bedroom.jpeg'
     ];
-    
+
     List<int> total_devices = [5, 3, 2, 7, 1];
 
     return Scaffold(
@@ -50,7 +51,9 @@ class _RoomPageState extends State<RoomPage> {
                       onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const IndividualRoom()),
+                          builder: (context) => IndividualRoom(pageIndex: index,),
+                          // builder: (context) => indiRoom(),
+                        ),
                       ),
                       child: Container(
                         height: 200,
@@ -59,8 +62,8 @@ class _RoomPageState extends State<RoomPage> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           image: DecorationImage(
-                            image:
-                                AssetImage('assets/images/rooms/${room_images[index]}'),
+                            image: AssetImage(
+                                'assets/images/rooms/${room_images[index]}'),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -85,7 +88,8 @@ class _RoomPageState extends State<RoomPage> {
                                     ),
                                     Text(
                                       // '5 Devices',
-                                      total_devices[index].toString() + ' Devices',
+                                      total_devices[index].toString() +
+                                          ' Devices',
                                       style:
                                           kSubHeadingLarge(color: Colors.white),
                                     ),

@@ -1,4 +1,5 @@
 import 'package:autohome/screens/landingpage.dart';
+import 'package:autohome/screens/loginpage.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: LandingPage(),
+      // home: LandingPage(),
+      home: LoginPage(),
       debugShowCheckedModeBanner: false,
     );
   }

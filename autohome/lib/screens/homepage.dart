@@ -275,7 +275,7 @@ class _HomePageState extends State<HomePage> {
                                           icon: FontAwesomeIcons.fan,
                                         ),
                                         CircularIconButton(
-                                          icon: FontAwesomeIcons.lightbulb,
+                                          icon: Icons.air,
                                         ),
                                         CircularIconButton(
                                           icon: FontAwesomeIcons.fan,
