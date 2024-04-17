@@ -1,6 +1,5 @@
 import 'package:autohome/constants.dart';
 import 'package:autohome/screens/individual_room.dart';
-import 'package:autohome/screens/temp_indi_room.dart';
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +32,7 @@ class _RoomPageState extends State<RoomPage> {
       'guest_bedroom.jpeg'
     ];
 
-    List<int> total_devices = [5, 3, 2, 7, 1];
+    List<int> total_devices = [1, 2, 3, 3, 1];
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -51,7 +50,8 @@ class _RoomPageState extends State<RoomPage> {
                       onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => IndividualRoom(pageIndex: index,),
+                          builder: (context) => IndividualRoom(roomNumber: index,),
+                          // builder: (context) => RoomPageNew(roomNumber: index),
                           // builder: (context) => indiRoom(),
                         ),
                       ),

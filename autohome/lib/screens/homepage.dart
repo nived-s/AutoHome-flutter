@@ -1,5 +1,4 @@
 import 'package:autohome/screens/landingpage.dart';
-import 'package:autohome/screens/roompage.dart';
 import 'package:autohome/widgets/circulariconbtn.dart';
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
