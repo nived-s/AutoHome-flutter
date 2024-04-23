@@ -47,14 +47,19 @@ class _RoomPageState extends State<RoomPage> {
                   scrollDirection: Axis.vertical,
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => IndividualRoom(roomNumber: index,),
-                          // builder: (context) => RoomPageNew(roomNumber: index),
-                          // builder: (context) => indiRoom(),
-                        ),
-                      ),
+                      onTap: () {
+                        print(index);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => IndividualRoom(
+                              roomNumber: index,
+                            ),
+                            // builder: (context) => RoomPageNew(roomNumber: index),
+                            // builder: (context) => indiRoom(),
+                          ),
+                        );
+                      },
                       child: Container(
                         height: 200,
                         width: screenWidth * 0.6,

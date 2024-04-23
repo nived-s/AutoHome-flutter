@@ -4,6 +4,7 @@ import 'package:autohome/models/individual_room_class.dart';
 import 'package:autohome/widgets/individualRoomPageRoomDetailsContainer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:string_2_icon/string_2_icon.dart';
 
@@ -31,13 +32,19 @@ class _IndividualRoomState extends State<IndividualRoom> {
 
   Future<void> _loadRoom() async {
     try {
-      final roomData = await fetchData(widget.roomNumber);
+      print('room data called');
+
+      final roomData = await fetchIndividualRoom(widget.roomNumber);
+
+      print(roomData);
+      print("room data fetched");
       setState(() {
         _room = roomData;
         _switches = roomData.availDevices
             .map((device) => CupertinoSwitch(
                   value: device[2] == 'true',
-                  onChanged: (value) => _toggleDevice(device[0], value),
+                  onChanged: (value) =>
+                      _toggleDevice(device[0], value, device[0]),
                 ))
             .toList();
       });
@@ -46,14 +53,26 @@ class _IndividualRoomState extends State<IndividualRoom> {
     }
   }
 
-  void _toggleDevice(String deviceName, bool value) {
-    setState(() {
-      final index =
-          _room?.availDevices.indexWhere((device) => device[0] == deviceName);
-      if (index != null) {
-        _room?.availDevices[index][2] = value.toString();
-      }
-    });
+  Future<void> _toggleDevice(String deviceName, bool value, int index) async {
+    final bool success = await updateDevice(
+        _room!.room, [index, value, _room?.availDevices[index]['pin_num']]);
+
+    if (success) {
+      setState(() {
+        final index = _room?.availDevices
+            .indexWhere((device) => device['device'] == deviceName);
+        if (index != null) {
+          _room?.availDevices[index]['isOn'] = value.toString();
+        }
+      });
+    } else {
+      Fluttertoast.showToast(
+        msg: "Failed to update device",
+        toastLength: Toast.LENGTH_LONG,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+      );
+    }
   }
 
   @override
@@ -265,7 +284,8 @@ class _IndividualRoomState extends State<IndividualRoom> {
                               children: [
                                 // Device icon
                                 Icon(
-                                  String2Icon.getIconDataFromString(device![1]),
+                                  String2Icon.getIconDataFromString(
+                                      device!['icon']),
                                   size: 42,
                                 ),
 
@@ -275,17 +295,18 @@ class _IndividualRoomState extends State<IndividualRoom> {
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Text(
-                                      device[0],
+                                      device['device'],
                                       style: kSubHeadingLarge(),
                                     ),
                                     CupertinoSwitch(
-                                      value: device[2] == 'true',
+                                      value: device['isOn'] == 'true',
                                       onChanged: (value) {
                                         setState(() {
-                                          _room?.availDevices[index][2] =
+                                          _room?.availDevices[index]['isOn'] =
                                               value.toString();
                                         });
-                                        _toggleDevice(device[0], value);
+                                        _toggleDevice(
+                                            device['device'], value, index);
                                       },
                                     ),
                                   ],

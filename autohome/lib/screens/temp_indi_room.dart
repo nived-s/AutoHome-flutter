@@ -14,7 +14,7 @@ class _indiRoomState extends State<indiRoom> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder<RoomData>(
-        future: fetchData(1),
+        future: fetchIndividualRoom(1),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
