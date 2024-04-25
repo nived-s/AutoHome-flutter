@@ -32,7 +32,7 @@ class _RoomPageState extends State<RoomPage> {
       'guest_bedroom.jpeg'
     ];
 
-    List<int> total_devices = [1, 2, 3, 3, 1];
+    List<int> total_devices = [1, 3, 2, 2, 2];
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -43,7 +43,7 @@ class _RoomPageState extends State<RoomPage> {
               SizedBox(
                 height: screenHeight * 0.88,
                 child: ListView.builder(
-                  itemCount: 4,
+                  itemCount: 5,
                   scrollDirection: Axis.vertical,
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(

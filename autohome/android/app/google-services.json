@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "837499369435",
+    "project_id": "autohome-4e6ae",
+    "storage_bucket": "autohome-4e6ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:837499369435:android:bb5d83a0e75f205b4b19fe",
+        "android_client_info": {
+          "package_name": "com.example.autohome"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJ5xqrO53ASlIAabBtDP8WiSMmJiUxWQg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 // ------------------- MODES -------------------------
 
 Future<void> updateModeRequest(String newMode) async {
-  String url = 'http://192.168.1.5:5000/update-mode';
+  String url = 'http://192.168.97.188:5000/update-mode';
 
   try {
     final response = await http.post(
@@ -53,7 +53,7 @@ Future<void> updateModeRequest(String newMode) async {
 // - Get individual room details
 Future<RoomData> fetchIndividualRoom(int roomNumber) async {
   final response = await http.post(
-    Uri.parse('http://192.168.59.123:5000/individual-room'),
+    Uri.parse('http://192.168.97.188:5000/individual-room'),
     body: jsonEncode({'room': roomNumber}),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
@@ -76,7 +76,7 @@ Future<bool> updateDevice(int room, List<dynamic> toupdateDevice) async {
     "room": room,
     "update_device": toupdateDevice,
   };
-  const url = 'http://192.168.59.123:5000/update-device';
+  const url = 'http://192.168.97.188:5000/update-device';
   final response = await http.post(
     Uri.parse(url),
     headers: {'Content-Type': 'application/json'},

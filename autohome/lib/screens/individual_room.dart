@@ -55,7 +55,7 @@ class _IndividualRoomState extends State<IndividualRoom> {
 
   Future<void> _toggleDevice(String deviceName, bool value, int index) async {
     final bool success = await updateDevice(
-        _room!.room, [index, value, _room?.availDevices[index]['pin_num']]);
+        _room!.room, [index, value.toString(), _room?.availDevices[index]['pin_num']]);
 
     if (success) {
       setState(() {
@@ -79,6 +79,14 @@ class _IndividualRoomState extends State<IndividualRoom> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+
+    List<String> room_images = [
+      'kitchen.jpeg',
+      'hall.jpeg',
+      'master_bedroom.jpeg',
+      'children_room.jpeg',
+      'guest_bedroom.jpeg'
+    ];
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -110,58 +118,59 @@ class _IndividualRoomState extends State<IndividualRoom> {
                         ],
                       ),
                       // Room img
-                      // Container(
-                      //   height: screenHeight * 0.4,
-                      //   width: screenWidth * 0.52,
-                      //   decoration: BoxDecoration(
-                      //     borderRadius: BorderRadius.circular(20),
-                      //     boxShadow: [
-                      //       BoxShadow(blurRadius: 3, spreadRadius: 0.2)
-                      //     ],
-                      //     image: DecorationImage(
-                      //       // image: AssetImage(
-                      //       //   'assets/images/rooms/kitchen.jpg',
-                      //       // ),
-                      //       image: NetworkImage(_room!.img),
-                      //       fit: BoxFit.cover,
-                      //     ),
-                      //   ),
-                      // ),
-
-                      FutureBuilder(
-                        future: _loadImage,
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return Container(
-                              height: screenHeight * 0.4,
-                              width: screenWidth * 0.52,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                boxShadow: const [
-                                  BoxShadow(blurRadius: 3, spreadRadius: 0.2)
-                                ],
-                                color: Colors.grey[200],
-                              ),
-                            );
-                          } else {
-                            return Container(
-                              height: screenHeight * 0.4,
-                              width: screenWidth * 0.52,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                boxShadow: const [
-                                  BoxShadow(blurRadius: 3, spreadRadius: 0.2)
-                                ],
-                                image: DecorationImage(
-                                  image: NetworkImage(_room!.img),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            );
-                          }
-                        },
+                      Container(
+                        height: screenHeight * 0.4,
+                        width: screenWidth * 0.52,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(blurRadius: 3, spreadRadius: 0.2)
+                          ],
+                          image: DecorationImage(
+                            image: AssetImage(
+                              'assets/images/rooms/${room_images[widget.roomNumber]}',
+                            ),
+                            
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
+
+                      // FutureBuilder(
+                      //   future: _loadImage,
+                      //   builder: (context, snapshot) {
+                      //     if (snapshot.connectionState ==
+                      //         ConnectionState.waiting) {
+                      //       return Container(
+                      //         height: screenHeight * 0.4,
+                      //         width: screenWidth * 0.52,
+                      //         decoration: BoxDecoration(
+                      //           borderRadius: BorderRadius.circular(20),
+                      //           boxShadow: const [
+                      //             BoxShadow(blurRadius: 3, spreadRadius: 0.2)
+                      //           ],
+                      //           color: Colors.grey[200],
+                      //         ),
+                      //       );
+                      //     } else {
+                      //       return Container(
+                      //         height: screenHeight * 0.4,
+                      //         width: screenWidth * 0.52,
+                      //         decoration: BoxDecoration(
+                      //           borderRadius: BorderRadius.circular(20),
+                      //           boxShadow: const [
+                      //             BoxShadow(blurRadius: 3, spreadRadius: 0.2)
+                      //           ],
+                      //           image: DecorationImage(
+                      //             image: NetworkImage(_room!.img),
+                      //             fit: BoxFit.cover,
+                      //           ),
+                      //         ),
+                      //       );
+                      //     }
+                      //   },
+                      // ),
+                   
                     ],
                   ),
                 ),
