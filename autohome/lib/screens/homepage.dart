@@ -182,6 +182,7 @@ class _HomePageState extends State<HomePage> {
                             buttons: modes,
                             onSelected: (value, index, isSelected) {
                               print("$index is selected");
+                              print(modes[index]);
                             },
                           ),
                         ],

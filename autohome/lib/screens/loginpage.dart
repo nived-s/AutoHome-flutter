@@ -1,3 +1,4 @@
+import 'package:autohome/api_calls.dart';
 import 'package:autohome/constants.dart';
 import 'package:autohome/screens/landingpage.dart';
 import 'package:autohome/screens/signup_page.dart';
@@ -86,15 +87,39 @@ class LoginPage extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         ElevatedButton(
-          onPressed: () {
-            print(_textEditingControllerUsername.text);
-            print(_textEditingControllerPassword.text);
+          onPressed: () async {
+            final username = _textEditingControllerUsername.text;
+            final password = _textEditingControllerPassword.text;
+            final loginResult = await loginApiCall(username, password);
 
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => const LandingPage()),
-              (route) => false,
-            );
+            if (loginResult == true) {
+              // Login successful, navigate to next page
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const LandingPage()),
+                (route) => false,
+              );
+            } else if (loginResult == false) {
+              // Invalid username or password, show toast
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Invalid username or password')),
+              );
+            } else {
+              // Unknown error, show toast
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('An error occurred')),
+              );
+            }
+
+
+            // print(_textEditingControllerUsername.text);
+            // print(_textEditingControllerPassword.text);
+
+            // Navigator.pushAndRemoveUntil(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => const LandingPage()),
+            //   (route) => false,
+            // );
           },
           style: ElevatedButton.styleFrom(
             shape: const StadiumBorder(),

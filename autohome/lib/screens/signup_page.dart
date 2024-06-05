@@ -1,3 +1,4 @@
+import 'package:autohome/api_calls.dart';
 import 'package:autohome/constants.dart';
 import 'package:autohome/screens/landingpage.dart';
 import 'package:autohome/screens/loginpage.dart';
@@ -105,18 +106,44 @@ class SignupPage extends StatelessWidget {
                 Container(
                     padding: const EdgeInsets.only(top: 3, left: 3),
                     child: ElevatedButton(
-                      onPressed: () {
-                        print(_textEditingControllerUsername.text);
-                        print(_textEditingControllerEmail.text);
-                        print(_textEditingControllerPassword.text);
-                        print(_textEditingControllerConfirmPassword.text);
+                      onPressed: () async {
+                        final username = _textEditingControllerUsername.text;
+                        final email = _textEditingControllerEmail.text;
+                        final password = _textEditingControllerPassword.text;
+                        final confirmPassword =
+                            _textEditingControllerConfirmPassword.text;
 
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LandingPage()),
-                          (route) => false,
-                        );
+                        final signupResult = await signupApiCall(
+                            username, email, password, confirmPassword);
+
+                        if (signupResult) {
+                          // Signup successful, navigate to next page
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LandingPage()),
+                            (route) => false,
+                          );
+                        } else {
+                          // Error occurred, show toast
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                                content:
+                                    Text('Signup failed. Please try again.')),
+                          );
+                        }
+
+                        // print(_textEditingControllerUsername.text);
+                        // print(_textEditingControllerEmail.text);
+                        // print(_textEditingControllerPassword.text);
+                        // print(_textEditingControllerConfirmPassword.text);
+
+                        // Navigator.pushAndRemoveUntil(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //       builder: (context) => const LandingPage()),
+                        //   (route) => false,
+                        // );
                       },
                       child: Text(
                         "Sign up",

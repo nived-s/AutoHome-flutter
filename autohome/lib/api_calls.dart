@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 // ------------------- MODES -------------------------
 
 Future<void> updateModeRequest(String newMode) async {
-  String url = 'http://192.168.97.188:5000/update-mode';
+  String url = 'http://192.168.11.188:5000/update-mode';
 
   try {
     final response = await http.post(
@@ -53,7 +53,7 @@ Future<void> updateModeRequest(String newMode) async {
 // - Get individual room details
 Future<RoomData> fetchIndividualRoom(int roomNumber) async {
   final response = await http.post(
-    Uri.parse('http://192.168.97.188:5000/individual-room'),
+    Uri.parse('http://192.168.11.188:5000/individual-room'),
     body: jsonEncode({'room': roomNumber}),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
@@ -76,7 +76,7 @@ Future<bool> updateDevice(int room, List<dynamic> toupdateDevice) async {
     "room": room,
     "update_device": toupdateDevice,
   };
-  const url = 'http://192.168.97.188:5000/update-device';
+  const url = 'http://192.168.11.188:5000/update-device';
   final response = await http.post(
     Uri.parse(url),
     headers: {'Content-Type': 'application/json'},
@@ -95,3 +95,46 @@ Future<bool> updateDevice(int room, List<dynamic> toupdateDevice) async {
 
 // ------------------- END OF DEVICES -------------------------
 
+// ------------------- LOGIN AND SIGNUP -------------------------
+
+Future<dynamic> loginApiCall(String username, String password) async {
+  final Uri url = Uri.parse(
+      'http://192.168.11.188:5000/login'); // Replace with your API URL
+  final headers = {'Content-Type': 'application/json'};
+
+  final jsonData = {'username': username, 'password': password};
+  final response =
+      await http.post(url, headers: headers, body: jsonEncode(jsonData));
+
+  if (response.statusCode == 200) {
+    return true; // Login successful
+  } else if (response.statusCode == 401) {
+    return false; // Invalid username or password
+  } else {
+    return null; // Unknown error
+  }
+}
+
+Future<bool> signupApiCall(String username, String email, String password,
+    String confirmPassword) async {
+  final Uri url = Uri.parse(
+      'http://192.168.11.188:5000/signup'); // Replace with your API URL
+  final headers = {'Content-Type': 'application/json'};
+
+  final jsonData = {
+    'username': username,
+    'email': email,
+    'password': password,
+    'confirm_password': confirmPassword
+  };
+  final response =
+      await http.post(url, headers: headers, body: jsonEncode(jsonData));
+
+  if (response.statusCode == 200) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// ------------------- END OF LOGIN SIGNUP -------------------------
